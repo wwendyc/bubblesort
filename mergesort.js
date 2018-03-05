@@ -6,39 +6,19 @@ function split (arr) {
   if (arr.length === 1) {
     return arr;
   }
-  let finalFirstHalf = split(firstHalf);
-  let finalSecondHalf = split(secondHalf);
-  return [finalFirstHalf, finalSecondHalf];
+  // let finalFirstHalf = split(firstHalf);
+  // let finalSecondHalf = split(secondHalf);
+  // return [finalFirstHalf, finalSecondHalf];
+
+  merge (split(firstHalf), split(secondHalf))
+
 }
 
 function comparisons (num1, num2) {
   return num1 > num2;
 }
 
-function sort (arrayToSort) {
-// [[[3], [2]], [1]]]
-  return arrayToSort.reduce(function(sortedAcc, currentElem) {
-    let inner1 = currentElem[0]
-    let inner2 = currentElem[1]
-    switch (true) {
-      case (inner1.length > inner2.length):
-        sortedAcc.push(sort(inner1));
-        break;
-      case (inner2.length > inner1.length):
-        sortedAcc.push(sort(inner2));
-        break;
-      default:
-        if (comparisons(inner1, inner2)) currentElem = [inner2, inner1];
-        sortedAcc.push(currentElem);
-        break;
-    }
-    return sortedAcc;
-    // [[2, 3]]
-  }, [])
-
-}
-
-function merge (arr) {
+function merge (firstHalf, secondHalf) {
   /*
   [5, 4, 3, 2, 1]
   --> [[5, 4] | [3, 2, 1]]
@@ -48,7 +28,9 @@ function merge (arr) {
   --> [[4, 5] | [1, 2, 3]]
   --> [1, 2, 3, 4, 5]
   */
-  let splitArr = split(arr);
+
+
+
 
 
 
