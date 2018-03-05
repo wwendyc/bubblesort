@@ -1,6 +1,8 @@
 function swap (num1, num2) {
-  let tempNum;
-
+  let tempNum = num2;
+  num2 = num1;
+  num1 = num2;
+  return [num1, num2];
 }
 
 function comparisons (num1, num2) {
@@ -9,13 +11,22 @@ function comparisons (num1, num2) {
 
 function bubbleSort (arr) {
   let lastIndex = arr.length - 1;
-  for (let i = 0; i < arr.length; i++) {
-    let currentNum = arr[i];
-    let nextNum = arr[i + 1];
-    for (let j = 0; j < lastIndex; j++) {
-
+  while (lastIndex > 0) {
+    for (let i = 0; i < lastIndex; i++) {
+      let currentNum = arr[i];
+      let nextNum = arr[i + 1];
+      if (comparisons(currentNum, nextNum)) {
+        const swappedNums = swap(currentNum, nextNum);
+        arr[i] = swappedNums[0]
+        arr[i+1] = swappedNums[1]
+      };
     }
     lastIndex--;
   }
+
   return arr;
 }
+
+const arr = [10, 4, 8, 3, 7, 9]
+
+console.log(bubbleSort(arr));
