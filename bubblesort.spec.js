@@ -1,6 +1,7 @@
 describe('Bubble Sort', function(){
   beforeAll(function () {
-    spyOn(tootsiepop, 'lick').and.callThrough();
+    spyOn(swap).and.callThrough();
+    spyOn(comparisons).and.callThrough();
   });
 
   it('handles an empty array', function(){
@@ -15,7 +16,41 @@ describe('Bubble Sort', function(){
 
   it('calls the swap function', function(){
    let array = [10, 8];
+   let array2 = [100, 82, 5]; // 2 on first round, 1 on second round
+   let array3 = [10, 4, 8, 3, 7, 9];
+    // first round: 1, 1, 1, 1, 1 --> [4, 8, 3, 7, 9, 10]
+    // second round: 1, 1 --> [4, 3, 7, 8, 9, 10]
+    // third round: 1 --> [3, 4, 7, 8, 9, 10]
+
    bubbleSort(array)
-   expect( swap.calls.count ).toEqual(1);
+   expect(swap.calls.count()).toEqual(1);
+
+   bubbleSort(array2)
+   expect(swap.calls.count()).toEqual(3);
+
+   bubbleSort(array3)
+   expect(swap.calls.count()).toEqual(8);
   });
+
+  it('calls the swap function', function(){
+    let array = [10, 8];
+    let array2 = [100, 82, 5];
+      // 100, 82 --> 82, 100
+      // 100, 5
+      // 82, 5
+    let array3 = [10, 4, 8, 3, 7, 9];
+      // 10, 4 | 10, 8 | 10, 3 | 10, 7 | 10, 9
+      // 4, 8 | 8, 3 | 8, 7 | 8, 9
+      // 4, 3 | 4, 7
+      // 3, 4
+
+    bubbleSort(array)
+    expect(comparisons.calls.count()).toEqual(1);
+
+    bubbleSort(array2)
+    expect(comparisons.calls.count()).toEqual(3);
+
+    bubbleSort(array3)
+    expect(comparisons.calls.count()).toEqual(12);
+   });
 });
