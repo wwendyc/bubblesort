@@ -1,12 +1,12 @@
-function swap (num1, num2) {
-  let tempNum = num2;
-  num2 = num1;
-  num1 = num2;
-  return [num1, num2];
+var swap = function (num1, num2) {
+    let tempNum = num2;
+    num2 = num1;
+    num1 = tempNum;
+    return [num1, num2];
 }
 
-function comparisons (num1, num2) {
-  return num1 > num2;
+var comparisons = function (num1, num2) {
+    return num1 > num2;
 }
 
 function bubbleSort (arr) {
@@ -18,15 +18,11 @@ function bubbleSort (arr) {
       if (comparisons(currentNum, nextNum)) {
         const swappedNums = swap(currentNum, nextNum);
         arr[i] = swappedNums[0]
-        arr[i+1] = swappedNums[1]
+        arr[i + 1] = swappedNums[1]
       };
     }
     lastIndex--;
   }
-
   return arr;
 }
 
-const arr = [10, 4, 8, 3, 7, 9]
-
-console.log(bubbleSort(arr));
